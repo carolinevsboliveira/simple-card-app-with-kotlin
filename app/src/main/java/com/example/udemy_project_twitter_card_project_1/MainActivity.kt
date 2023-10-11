@@ -1,30 +1,20 @@
 package com.example.udemy_project_twitter_card_project_1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.material3.Divider
+import androidx.compose.material3.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
 
@@ -48,6 +38,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 fun CreateBizCard() {
     Surface(
@@ -69,12 +60,28 @@ fun CreateBizCard() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                PrincessImage()
+                PrincessImage(
+                    modifier = Modifier.size(150.dp)
+                        .padding(5.dp)
+                )
                 Divider(
                     thickness = 1.dp,
                     modifier = Modifier.padding(10.dp)
                 )
+                Column(
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                )
+                {
+                    InformationText(
+                        "Mrs. Queen of America",
+                        "Some loved queen"
+                    )
+                    FilledButton("Say Hi!")
+                }
             }
+
         }
     }
 }
@@ -82,8 +89,6 @@ fun CreateBizCard() {
 @Composable
 fun PrincessImage(
     modifier: Modifier = Modifier
-        .size(150.dp)
-        .padding(5.dp)
 ) {
     Surface(
         modifier,
@@ -97,6 +102,28 @@ fun PrincessImage(
             contentScale = ContentScale.FillWidth
         )
     }
+}
+
+@Composable
+fun InformationText(text: String, description: String) {
+
+    Text(
+        text = text,
+        style = MaterialTheme.typography.titleLarge
+    )
+    Text(
+        text = description,
+        style = MaterialTheme.typography.titleMedium
+    )
+
+}
+
+@Composable
+fun FilledButton(title: String) {
+    Button(onClick = { Log.d("Main Button", "Has Clicked") }) {
+        Text(title)
+    }
+
 }
 
 @Preview(showBackground = true)
